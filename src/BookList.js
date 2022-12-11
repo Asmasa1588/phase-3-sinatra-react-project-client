@@ -10,5 +10,14 @@ export const BookList = () => {
         console.log({ receivedBooks });
       });
   }, []);
-  return <div>Here we will list books</div>;
+  return (
+    <div>
+      <h1>Books List</h1>
+      <div>
+        {books.map((book) => {
+          return <div key={book.id}> {book.title} </div>;
+        })}
+      </div>
+    </div>
+  );
 };
