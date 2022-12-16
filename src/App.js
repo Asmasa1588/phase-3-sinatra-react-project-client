@@ -1,14 +1,15 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { BookList } from "./BookList";
+import { Book } from "./Book";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <BookList />,
   },
   {
-    path: "/book",
-    element: <div>Books page</div>,
+    path: "/book/:id",
+    element: <Book />,
   },
 ]);
 

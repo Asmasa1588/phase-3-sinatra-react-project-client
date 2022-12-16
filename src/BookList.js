@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export const BookList = () => {
   const [books, setBooks] = useState([]);
@@ -15,7 +16,16 @@ export const BookList = () => {
       <h1>Books List</h1>
       <div>
         {books.map((book) => {
-          return <div key={book.id}> {book.title} </div>;
+          return (
+            <div
+              key={book.id}
+              onClick={() => {
+                console.log(book.id);
+              }}
+            >
+              <Link to={`/book/${book.id}`}>{book.title}</Link>
+            </div>
+          );
         })}
       </div>
     </div>
