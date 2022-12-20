@@ -33,7 +33,30 @@ export const Book = () => {
           <div>
             <h2>Reviews:</h2>
             {(book.reviews || []).map((review) => {
-              return <p key={review.id}>{review.review}</p>;
+              return (
+                <div key={review.id}>
+                  <p>
+                    {review.review}
+                    <button
+                      onClick={() => {
+                        fetch(`http://localhost:9292/reviews/${review.id}`, {
+                          method: "DELETE",
+                        })
+                          .then((res) => res.json())
+                          .then(() => {
+                            fetch(`http://localhost:9292/books/${id}`)
+                              .then((res) => res.json())
+                              .then((receivedBook) => {
+                                setBook(receivedBook);
+                              });
+                          });
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </p>
+                </div>
+              );
             })}
             <div>
               <button
