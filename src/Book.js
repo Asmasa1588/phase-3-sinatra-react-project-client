@@ -54,6 +54,7 @@ export const Book = () => {
                     >
                       Delete
                     </button>
+                    <Link to={`/book/${id}/review/${review.id}`}>Edit</Link>
                   </p>
                 </div>
               );
