@@ -1,5 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 export const Book = () => {
   const { id } = useParams();
   const [book, setBook] = useState();
@@ -12,6 +14,7 @@ export const Book = () => {
   }, [id]);
   return (
     <div>
+      <Link to={`/`}>Back</Link>
       {book && (
         <div>
           <div>
@@ -31,4 +34,3 @@ export const Book = () => {
     </div>
   );
 };
-
