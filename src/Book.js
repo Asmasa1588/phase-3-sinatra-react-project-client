@@ -5,6 +5,13 @@ import { Link } from "react-router-dom";
 export const Book = () => {
   const { id } = useParams();
   const [book, setBook] = useState();
+  const [showCreateReviewForm, setShowCreateReviewForm] = useState(false);
+  const initialCreateReviewFormState = {
+    review: "",
+  };
+  const [createReviewForm, setCreateReviewForm] = useState(
+    initialCreateReviewFormState
+  );
   useEffect(() => {
     fetch(`http://localhost:9292/books/${id}`)
       .then((res) => res.json())
@@ -28,6 +35,52 @@ export const Book = () => {
             {(book.reviews || []).map((review) => {
               return <p key={review.id}>{review.review}</p>;
             })}
+            <div>
+              <button
+                onClick={() => {
+                  setShowCreateReviewForm(true);
+                }}
+              >
+                Add a Review
+              </button>
+              {showCreateReviewForm && (
+                <form
+                  onChange={(event) => {
+                    setCreateReviewForm((prev) => ({
+                      ...prev,
+                      [event.target.name]: event.target.value,
+                    }));
+                  }}
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    console.log({ createReviewForm });
+                    fetch(`http://localhost:9292/reviews/${id}`, {
+                      method: "POST",
+                      headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                      },
+                      body: JSON.stringify(createReviewForm),
+                    })
+                      .then((res) => res.json())
+                      .then((createdReview) => {
+                        fetch(`http://localhost:9292/books/${id}`)
+                          .then((res) => res.json())
+                          .then((receivedBook) => {
+                            setBook(receivedBook);
+                          });
+                        // setBooks((prev) => [...prev, createdBook]);
+                        setCreateReviewForm(initialCreateReviewFormState);
+                        setShowCreateReviewForm(false);
+                      });
+                  }}
+                >
+                  <label>Review</label>
+                  <input name="review" />
+                  <button type="submit">Submit</button>
+                </form>
+              )}
+            </div>
           </div>
         </div>
       )}
