@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 export const BookList = () => {
   const [books, setBooks] = useState([]);
   const [showCreateBookForm, setShowCreateBookForm] = useState(false);
-  const [bookForm, setBookForm] = useState({
+  const initialBookFormState = {
     author: "",
     title: "",
     year: "",
     pages: "",
-  });
+  };
+  const [bookForm, setBookForm] = useState(initialBookFormState);
   useEffect(() => {
     fetch("http://localhost:9292/books")
       .then((res) => res.json())
@@ -60,7 +61,13 @@ export const BookList = () => {
                   "Content-Type": "application/json",
                 },
                 body: JSON.stringify(bookForm),
-              });
+              })
+                .then((res) => res.json())
+                .then((createdBook) => {
+                  setBooks((prev) => [...prev, createdBook]);
+                  setBookForm(initialBookFormState);
+                  setShowCreateBookForm(false);
+                });
             }}
           >
             <label>Title</label>
