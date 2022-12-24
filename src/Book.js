@@ -34,28 +34,26 @@ export const Book = () => {
             <h2>Reviews:</h2>
             {(book.reviews || []).map((review) => {
               return (
-                <div key={review.id}>
-                  <p>
-                    {review.review}
-                    <button
-                      onClick={() => {
-                        fetch(`http://localhost:9292/reviews/${review.id}`, {
-                          method: "DELETE",
-                        })
-                          .then((res) => res.json())
-                          .then(() => {
-                            fetch(`http://localhost:9292/books/${id}`)
-                              .then((res) => res.json())
-                              .then((receivedBook) => {
-                                setBook(receivedBook);
-                              });
-                          });
-                      }}
-                    >
-                      Delete
-                    </button>
-                    <Link to={`/book/${id}/review/${review.id}`}>Edit</Link>
-                  </p>
+                <div className="review-item" key={review.id}>
+                  <p>{review.review}</p>
+                  <button
+                    onClick={() => {
+                      fetch(`http://localhost:9292/reviews/${review.id}`, {
+                        method: "DELETE",
+                      })
+                        .then((res) => res.json())
+                        .then(() => {
+                          fetch(`http://localhost:9292/books/${id}`)
+                            .then((res) => res.json())
+                            .then((receivedBook) => {
+                              setBook(receivedBook);
+                            });
+                        });
+                    }}
+                  >
+                    Delete
+                  </button>
+                  <Link to={`/book/${id}/review/${review.id}`}>Edit</Link>
                 </div>
               );
             })}
