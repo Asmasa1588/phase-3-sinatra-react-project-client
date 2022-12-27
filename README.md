@@ -22,3 +22,8 @@ npm start
 3. Frontend is available on
 
 - http://localhost:3000/
+
+## Requirements
+
+- npm
+- node
