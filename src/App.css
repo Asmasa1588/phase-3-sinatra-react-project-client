@@ -51,3 +51,8 @@
 .review-item button {
   margin-bottom: 10px;
 }
+
+body  {
+  background-image: url("pexels-pixabay-433333.jpg");
+  background-color: #cccccc;
+}
