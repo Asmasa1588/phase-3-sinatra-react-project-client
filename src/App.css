@@ -61,3 +61,10 @@ body  {
 .add-book-form {
   margin-top: 16px;
 }
+.back-link-wrapper {
+  text-align: start;
+}
+
+.back-link-wrapper a {
+  color: lightblue;
+}
