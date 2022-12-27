@@ -12,3 +12,9 @@ It consumes the api from [This project](https://github.com/Asmasa1588/phase-3-si
 ```
 npm install
 ```
+
+2. Starting the frontend
+
+```
+npm start
+```
