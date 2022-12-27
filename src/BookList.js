@@ -42,7 +42,7 @@ export const BookList = () => {
             setShowCreateBookForm(true);
           }}
         >
-          Create a New Book
+          Add a New Book
         </button>
         {showCreateBookForm && (
           <form
