@@ -36,7 +36,7 @@ export const BookList = () => {
           );
         })}
       </div>
-      <div>
+      <div className="add-book-form">
         <button
           onClick={() => {
             setShowCreateBookForm(true);
