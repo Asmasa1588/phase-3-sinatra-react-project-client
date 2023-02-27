@@ -36,3 +36,35 @@
     transform: rotate(360deg);
   }
 }
+
+.review-item {
+  border: 1px solid black;
+  width: 25%;
+  margin-bottom: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.review-item a {
+  margin-left: 5px;
+}
+.review-item button {
+  margin-bottom: 10px;
+  background-color: red;
+}
+
+body  {
+  background-image: url("pexels-pixabay-433333.jpg");
+  background-color: #cccccc;
+}
+
+.add-book-form {
+  margin-top: 16px;
+}
+.back-link-wrapper {
+  text-align: start;
+}
+
+.back-link-wrapper a {
+  color: lightblue;
+}
